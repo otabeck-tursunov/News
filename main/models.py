@@ -23,10 +23,11 @@ class News(models.Model):
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     image = models.ImageField(upload_to='news/')
     reading_time = models.DurationField()
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField(Tag)
 
     views = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
     published = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -57,6 +58,7 @@ class Content(models.Model):
 
 class Comment(models.Model):
     author = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to='profiles/', blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     text = models.TextField()
 

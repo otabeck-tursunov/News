@@ -19,7 +19,7 @@ class ContentInline(admin.StackedInline):
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'views', 'reading_time', 'published', 'created_at')
     search_fields = ('title',)
-    list_filter = ('views', 'categories', 'tags')
+    list_filter = ('views', 'category', 'tags')
     date_hierarchy = 'created_at'
     inlines = (ContentInline,)
 

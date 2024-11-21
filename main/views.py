@@ -22,6 +22,8 @@ class IndexView(View):
     def get(self, request):
         context = {
             'top_news_4': top_news_4(),
-            'top_news': News.objects.order_by('-views').first(),
+            'top_news_list': News.objects.order_by('-views').all()[:8],
         }
         return render(request, 'index.html', context)
+
+
